@@ -6,7 +6,7 @@ let exec_file f =
             | Some expr ->
                 print_string (Interpreter.string_of_expr expr);
                 Out_channel.newline stdout;
-                Some (Interpreter.eval expr [("x",`Var "y")])
+                Some (Interpreter.eval expr [])
             | None -> None
 
 let exec_and_print f () =

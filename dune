@@ -4,6 +4,7 @@
 (menhir
  (modules parser))
 
-(executable
-  (name orient)
+(executables
+  (names orient orient_test)
   (libraries core))
+
