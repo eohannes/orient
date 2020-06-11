@@ -9,11 +9,14 @@
 %%
 
 prog: EOF      { None }
-    | expr EOF { Some $1 }
+    | expr EOF { Some  $1 }
     ;
 
-expr: ID                 { `Var $1 }               (* a variable *)
-    | expr expr          { `App ($1, $2) }         (* an application *)
-    | LAMBDA ID DOT expr { `Lambda (`Var $2, $4) } (* a lambda *)
-    | LPAREN expr RPAREN { $2 }                    (* a parenthesized expr *)
-    ;
+expr: LAMBDA ID DOT expr { `Lambda (`Var $2, $4) }
+    | appl               { $1 }
+
+appl: appl item { `App ($1, $2) }
+    | item      { $1 }
+
+item: ID                 { `Var $1 }
+    | LPAREN expr RPAREN { $2 }
