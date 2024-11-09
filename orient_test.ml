@@ -8,7 +8,7 @@ type fail = [
 ]
 
 type result = [
-  | `Pass of string * expression
+  | `Pass of string * Interpreter.cst
   | `Fail of fail * string * string
 ]
 

@@ -1,1 +1,1 @@
-Lambda (Var (n)) (Lambda (Var (f)) (Lambda (Var (x)) (App (Var (f)) (App (App (Var (n)) (Var (f))) (Var (x))))))
+\n. \f. \x. (f) (((n) (f)) (x))

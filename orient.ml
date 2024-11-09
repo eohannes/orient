@@ -18,4 +18,4 @@ let () =
     Command.basic_spec ~summary: "Execute a file"
     Command.Spec.(empty +> anon ("filename" %: string))
     exec_and_print
-    |> Command.run
+    |> Command_unix.run

@@ -1,1 +1,1 @@
-App (Lambda (Var (x)) (Var (x))) (Var (y))
+(\x. x) (y)

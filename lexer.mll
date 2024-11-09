@@ -45,7 +45,7 @@ let print_pos outx lexbuf =
           pos.pos_lnum (pos.pos_cnum - pos.pos_bol + 1)
 
 let unchecked_parse lexbuf =
-    try Parser.prog read lexbuf with
+    try Parser.maybe_expression read lexbuf with
         | SyntaxError msg ->
             fprintf stderr "%a: %s\n" print_pos lexbuf msg; (* impure! *)
             None

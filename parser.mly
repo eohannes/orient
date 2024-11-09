@@ -5,17 +5,22 @@
 %token <string> ID
 %token EOF
 
-%start <Interpreter.expression option> prog
+%start <Interpreter.cst option> maybe_expression
+
 %%
 
-prog: EOF                { None }
-    | expr EOF           { Some  $1 }
+maybe_expression : term EOF { Some $1 }
+                 | EOF { None }
 
-expr: LAMBDA ID DOT expr { `Lambda (`Var $2, $4) }
-    | appl               { $1 }
+term : application { $1 }
+     | abstraction { $1 }
 
-appl: appl item          { `App ($1, $2) }
-    | item               { $1 }
-    
-item: ID                 { `Var $1 }
-    | LPAREN expr RPAREN { $2 }
+abstraction : LAMBDA ID DOT term { `Abstraction ($2, $4) }
+
+variable : ID { `Variable $1 }
+
+element : variable { $1 }
+        | LPAREN term RPAREN { $2 }
+
+application : application element { `Application ($1, $2) }
+            | element { $1 }
