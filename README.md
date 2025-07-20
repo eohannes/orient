@@ -4,6 +4,6 @@ A really, *really* simple lambda calculus interpreter, using `ocamllex` and `men
 
 - [x] named convenience bindings
 - [ ] lazyness?
-- [ ] REPL
+- [x] REPL
 - [ ] unit tests
 - [ ] types?
