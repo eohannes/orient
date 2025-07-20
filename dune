@@ -5,6 +5,5 @@
  (modules parser))
 
 (executables
-  (names orient orient_test)
-  (libraries core core_unix.command_unix))
-
+ (names orient orient_test orient_repl)
+ (libraries core core_unix.command_unix))

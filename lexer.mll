@@ -22,18 +22,24 @@ let lambda  = '\\'
 let dot     = '.'
 let lparen  = '('
 let rparen  = ')'
+let eq      = '='
+let in      = "in"
+let let_kw  = "let"
 
-let id      = ['a'-'z' 'A'-'Z']
+let id      = ['a'-'z' 'A'-'Z']+
 
 rule read =
     parse
     | white   { read lexbuf }
     | newline { next_line lexbuf; read lexbuf }
     | lambda  { LAMBDA }
+    | let_kw  { LET }
+    | in      { IN }
     | id      { ID (Lexing.lexeme lexbuf) }
     | dot     { DOT }
     | lparen  { LPAREN }
     | rparen  { RPAREN }
+    | eq      { EQ }
     | _       { raise (SyntaxError ("Unexpected character: " ^ Lexing.lexeme lexbuf)) }
     | eof     { EOF }
 
@@ -64,4 +70,9 @@ let parse_file f =
         let result = parse lexbuf in
           close_in inx; (* ick *)
           result
+
+let parse_string s =
+  let lexbuf = Lexing.from_string s in
+    parse lexbuf
+
 }

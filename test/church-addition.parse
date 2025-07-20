@@ -1,0 +1,1 @@
+plus = \m. \n. \f. \x. ((m) (f)) (((n) (f)) (x)) in one = \f. \x. (f) (x) in two = ((plus) (one)) (one) in ((plus) (two)) (two)

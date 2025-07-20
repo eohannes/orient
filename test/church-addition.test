@@ -1,0 +1,4 @@
+let plus = \m.\n.\f.\x. m f (n f x) in
+let one  = \f.\x.f x in
+let two  = plus one one in
+    plus two two
